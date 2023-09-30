@@ -53,3 +53,7 @@ body {
     bottom: 0;
     width: 100%;
 }
+
+#logo-pic {
+    width: 15px;
+}
