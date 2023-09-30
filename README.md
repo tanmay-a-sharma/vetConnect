@@ -1,2 +1,2 @@
-# robinhood-social-good-hack
+# VetConnect
 Robinhood's Social Good Hackathon
