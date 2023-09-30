@@ -2,12 +2,15 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #f8f8f8;
+    /* Off-White */
 }
 
 .main-header {
-    background-color: #4b5320;
-    color: #ffffff;
+    background-color: #00274d;
+    /* Navy Blue */
+    color: #ffd700;
+    /* Gold/Yellow */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -20,7 +23,8 @@ body {
 
 .nav-buttons button,
 .user-actions button {
-    background-color: #556b2f;
+    background-color: #bf0a30;
+    /* Red */
     border: none;
     color: #ffffff;
     padding: 10px 20px;
@@ -31,7 +35,8 @@ body {
 
 .nav-buttons button:hover,
 .user-actions button:hover {
-    background-color: #6b8e23;
+    background-color: #ff191f;
+    /* Lighter Red */
 }
 
 .dropdown {
@@ -40,7 +45,8 @@ body {
 }
 
 .dropbtn {
-    background-color: #556b2f;
+    background-color: #bf0a30;
+    /* Red */
     color: #ffffff;
     padding: 10px 20px;
     border: none;
@@ -51,7 +57,8 @@ body {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: #f8f8f8;
+    /* Off-White */
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
