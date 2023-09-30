@@ -1,3 +1,9 @@
+# VetConnect
+Robinhood's Social Good Hackathon
+
+
+
+
 # Routes = Handles all the routing
 # Controller = Controls the intercommunication 
 # Middleware = Functions to handle the request/errors
@@ -42,12 +48,3 @@
 
     => Menu - menuController.js  
     -->
-
-
-
-        
-
- 
-
-
-
