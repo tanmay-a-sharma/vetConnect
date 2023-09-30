@@ -22,7 +22,7 @@ const app = express();
 // app.use(cors())
 app.use(express.json()) // Used to parse json
 app.use(express.urlencoded({extended: false})) // We are sending data in this format in Postman
-
+app.use(express.static('public'));
 
 
 
