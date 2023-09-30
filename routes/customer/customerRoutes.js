@@ -8,7 +8,7 @@ const {protectCustomer} = require('../../middleware/customerAuthMiddleware')
 
 // get basic regstration html page 
 router.get('/', (req, res) => {
-    res.sendFile('index.html', { root: path.join(__dirname, '../../views') });
+    res.sendFile('header.html', { root: path.join(__dirname, '../../views') });
 
 });
 

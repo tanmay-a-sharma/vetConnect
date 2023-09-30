@@ -1,21 +1,24 @@
 # VetConnect
-Robinhood's Social Good Hackathon
+Robinhood Social Good Hackathon
 
-<small>
-# Routes = Handles all the routing
-# Controller = Controls the intercommunication 
-# Middleware = Functions to handle the request/errors
-# Config = Configs for Databases, etc etc
-# Model = Models for our tables in Mongoose database
 
-# We will be using async handler => async, await, with our mongoDB.
 
-# We are using Bcrypt js to hash the passwords and JWT to authenticate
-# The jwt token is signed using ID for each user. 
+
 
 <!-- Overview  -->
 <!-- 
-    If the following is our get request with its response 
+    Routes = Handles all the routing
+    Controller = Controls the intercommunication 
+    Middleware = Functions to handle the request/errors
+    Config = Configs for Databases, etc etc
+    Model = Models for our tables in Mongoose database
+
+    We will be using async handler => async, await , with our mongoDB.
+    We are using Bcrypt js to hash the passwords and JWT to authenticate
+    The jwt token is signed using ID for each user. 
+
+
+    If the following is our get request with it's response 
 
     router.get('/api/menu', (req,res) => { 
         res.status(200).json({"message" : 'Get Menu'})
