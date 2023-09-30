@@ -21,7 +21,7 @@ const app = express();
 // Some middlewares
 // app.use(cors())
 app.use(express.json()) // Used to parse json
-app.use(express.urlencoded({extended: false})) // We are sending data in this format in Postman
+app.use(express.urlencoded({ extended: false })) // We are sending data in this format in Postman
 app.use(express.static('public'));
 
 
@@ -40,7 +40,7 @@ app.use(express.static('public'));
 
 
 // Customer registration and login
-app.use("/api/customers", require("./routes/customer/customerRoutes"));
+app.use("/api", require("./routes/customer/customerRoutes"));
 
 
 
