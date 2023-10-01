@@ -6,7 +6,7 @@ const path = require('path');
 // router.use(bodyParser.json()); 
 
 const router = express.Router()
-const { registerCustomer, loginCustomer, getMe, registerOrganization, getMatchedCompanies} = require('../../controllers/customerController')
+const { registerCustomer, loginCustomer, getMe, registerOrganization, getMatchedCompanies } = require('../../controllers/customerController')
 const { protectCustomer } = require('../../middleware/customerAuthMiddleware')
 
 
@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 // router.post('/dropdown', (req, res) => {
 //     console.log(req.body.myData); // This will log "exampleData" or whatever you sent from the frontend
 
-    
+
 
 //     // Sending back a response to the frontend
 //     res.json({
@@ -38,8 +38,11 @@ router.get('/home', (req, res) => {
     res.sendFile('landing.html', { root: path.join(__dirname, '../../views') })
 });
 
+router.get('/login', (req, res) => {
+    res.sendFile('login.html', { root: path.join(__dirname, '../../views') })
+});
 
-router.post('/registerOrganization', registerOrganization) 
+router.post('/registerOrganization', registerOrganization)
 
 router.post('/', registerCustomer) // Adding a customer ==> registration
 router.post('/login', loginCustomer) // authenticate a customer ==> login
