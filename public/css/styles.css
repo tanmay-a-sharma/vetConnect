@@ -56,7 +56,7 @@ body {
 }
 
 #logo-pic {
-    height: 15px;
+    width: 100%;
 }
 
 strong {
@@ -71,10 +71,30 @@ strong {
 .inner-div {
     width: 50%;
     height: 50vh;
-    background-color: lightblue;
     margin: 10px;
+    align-items: center;
 }
 
 #left-par {
     text-align: center;
+}
+
+#primarimg {
+    width: 55%;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+#rightpar {
+    text-align: center;
+}
+
+#rightar img {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#left-par p {
+    font-size: 18px;
 }
