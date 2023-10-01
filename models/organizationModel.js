@@ -6,25 +6,25 @@ const organizationSchema = mongoose.Schema({
         type: String, 
         required: [true, 'Please add a name']
     },
-    username: {
+    description: {
         type: String, 
-        required: [true, 'Please add a username'],
-        unique: true
+        required: [true, 'Please add a description'],
+        unique: false
     },
-    email: {
+    tag: {
         type: String, 
-        required: [true, 'Please add an email'],
-        unique: true
+        required: [true, 'Please add an tag'],
+        unique: false
     },
-    password: {
+    contact: {
         type: String, 
-        required: [true, 'Please add a password']
+        required: [true, 'Please add contact information']
     },
     // role: {
     //     type: String, 
     //     required: [true, 'Please add a role']   // default role will be send using the customer controller
     // },
-    // phoneNumber: {  // Test on fronted whether the input is in number or not.
+    // phoneNumber: {  // Test on frontend whether the input is in number or not.
     //     type: Number, 
     //     required: [true, 'Please add a phone number']
     // }
