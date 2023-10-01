@@ -8,7 +8,7 @@ const Customer = require("../models/customerModel");
 //  @route Post /api/users
 //  @access Public
 const registerCustomer = asyncHandler(async (req, res) => {
-  const { name, username, phoneNumber, email, password } = req.body; // getting all the fields
+  const { name, username, email, password } = req.body; // getting all the fields
 
   // Can make this more specific for each missing field
   if (!name || !email || !password || !username) {
@@ -111,66 +111,11 @@ const getMatchedCompanies = asyncHandler(async (req, res) => {
   // Now based on that we perform a query 
 
   // Create a dict that has company info and send it to frontend. 
-  
-
 
 
 })
 
-// const pendingCall = asyncHandler(async (req, res) => {
-//   // Since we are getting the req.user,  userid from our authMiddleware,we can use it here since it's redirecting us here.
-//   const { _id, name, email } = await Customer.findById(req.customer.id); // We can all fetch others fields
-//   const { place_id } = req.body;
-//   const restaurant = await Restaurant.findOne({ place_id }); // We can all fetch others fields
 
-//   console.log(restaurant);
-//   if (restaurant) {
-//     const pendingcallRequest = await PendingCall.create({
-//       // restaurantName: restaurant.name,
-//       restaurantID: restaurant._id,
-//       customerID: _id,
-//     });
-
-//     if (pendingcallRequest) {
-//       res.status(200).json({
-//         restaurantID: restaurant._id,
-//         customerID: _id,
-//         name,
-//         email,
-//       });
-//     } else {
-//       res.status(400);
-//       throw new Error("Invalid restaurant id");
-//     }
-//   } else {
-//     res.status(400);
-//     throw new Error("Not Registered restaurant id");
-//   }
-
-//   // res.json({message: 'User Data' })
-// });
-
-// const updateMe = asyncHandler(async (req, res) => {
-//   // Since we are getting the req.user,  userid from our authMiddleware,we can use it here since it's redirecting us here.
-//   const { name, phoneNumber } = req.body; // getting the information from the frontend
-
-//   // const {_id, , email} = await Customer.findById(req.customer.id) // We can all fetch others fields
-
-//   const updatedCustomer = await Customer.findByIdAndUpdate(
-//     req.customer.id,
-//     { name, phoneNumber },
-//     { new: true }
-//   );
-
-//   // update the fields
-//   res.status(200).json({
-//     id: updatedCustomer._id,
-//     name: updatedCustomer.name, // if we want to show name:name, can just write name
-//     email: updatedCustomer.email,
-//     phoneNumber: updatedCustomer.phoneNumber,
-//   });
-//   // res.json({message: 'User Data' })
-// });
 
 // To generate a JWT token
 const generateToken = (id) => {

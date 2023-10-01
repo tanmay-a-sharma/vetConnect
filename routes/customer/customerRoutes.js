@@ -1,9 +1,9 @@
 const express = require('express')
 const path = require('path');
 
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 
-router.use(bodyParser.json()); 
+// router.use(bodyParser.json()); 
 
 const router = express.Router()
 const { registerCustomer, loginCustomer, getMe, getMatchedCompanies} = require('../../controllers/customerController')
@@ -29,7 +29,10 @@ router.get('/', (req, res) => {
 //     });
 // });
 
-router.post('/dropdown', findMatchedCompanies) // returns the matching companies
+router.post('/dropdown', getMatchedCompanies) // returns the matching companies
+
+
+
 
 router.get('/home', (req, res) => {
     res.sendFile('landing.html', { root: path.join(__dirname, '../../views') })
