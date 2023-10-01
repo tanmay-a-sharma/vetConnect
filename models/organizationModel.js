@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 // all the user-required fields
-const customerSchema = mongoose.Schema({
+const organizationSchema = mongoose.Schema({
     name: {
         type: String, 
         required: [true, 'Please add a name']
@@ -36,8 +36,4 @@ const customerSchema = mongoose.Schema({
 }
 )
 
-module.exports = mongoose.model('Customer', customerSchema)
-
-
-
-
+module.exports = mongoose.model('Organizaton', organizationSchema)

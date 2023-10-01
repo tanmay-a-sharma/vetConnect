@@ -2,7 +2,7 @@ const express = require('express')
 const path = require('path');
 
 const router = express.Router()
-const { registerCustomer, loginCustomer, getMe } = require('../../controllers/customerController')
+const { registerCustomer, loginCustomer, getMe, registerOrganization } = require('../../controllers/customerController')
 const { protectCustomer } = require('../../middleware/customerAuthMiddleware')
 
 
@@ -15,6 +15,9 @@ router.get('/', (req, res) => {
 router.get('/home', (req, res) => {
     res.sendFile('landing.html', { root: path.join(__dirname, '../../views') })
 });
+
+
+router.post('/registerOrganization', registerOrganization) 
 
 router.post('/', registerCustomer) // Adding a customer ==> registration
 router.post('/login', loginCustomer) // authenticate a customer ==> login

@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 const Customer = require("../models/customerModel");
+const Organization = require("../models/organizationModel")
 
 
 //  @desc Register new users
@@ -37,6 +38,10 @@ const registerCustomer = asyncHandler(async (req, res) => {
     // role: "customer", // default role
     // phoneNumber,
   });
+
+
+
+  
 
   if (customer) {
     res.status(201).json({
@@ -100,60 +105,55 @@ const getMe = asyncHandler(async (req, res) => {
   // res.json({message: 'User Data' })
 });
 
-// const pendingCall = asyncHandler(async (req, res) => {
-//   // Since we are getting the req.user,  userid from our authMiddleware,we can use it here since it's redirecting us here.
-//   const { _id, name, email } = await Customer.findById(req.customer.id); // We can all fetch others fields
-//   const { place_id } = req.body;
-//   const restaurant = await Restaurant.findOne({ place_id }); // We can all fetch others fields
+const registerOrganization = asyncHandler(async (req, res) => {
+  const { name, username, phoneNumber, email, password } = req.body; // getting all the fields
 
-//   console.log(restaurant);
-//   if (restaurant) {
-//     const pendingcallRequest = await PendingCall.create({
-//       // restaurantName: restaurant.name,
-//       restaurantID: restaurant._id,
-//       customerID: _id,
-//     });
+  // Can make this more specific for each missing field
+  if (!name || !email || !password || !username) {
+    res.status(400);
+    throw new Error("Please add all the fields");
+  }
 
-//     if (pendingcallRequest) {
-//       res.status(200).json({
-//         restaurantID: restaurant._id,
-//         customerID: _id,
-//         name,
-//         email,
-//       });
-//     } else {
-//       res.status(400);
-//       throw new Error("Invalid restaurant id");
-//     }
-//   } else {
-//     res.status(400);
-//     throw new Error("Not Registered restaurant id");
-//   }
+  // Check if user exists
+  const customerExists = await Customer.findOne({ email }); // email is unique and could be used to check if user exists \\ username is also unique \\  could also use phone number
+  if (customerExists) {
+    res.status(400);
+    throw new Error("Customer already exists");
+  }
 
-//   // res.json({message: 'User Data' })
-// });
+  // Hashing the password
 
-// const updateMe = asyncHandler(async (req, res) => {
-//   // Since we are getting the req.user,  userid from our authMiddleware,we can use it here since it's redirecting us here.
-//   const { name, phoneNumber } = req.body; // getting the information from the frontend
+  const salt = await bcrypt.genSalt(10); // to hash the pass
+  const hashPassword = await bcrypt.hash(password, salt);
 
-//   // const {_id, , email} = await Customer.findById(req.customer.id) // We can all fetch others fields
+  // Create user
+  const customer = await Customer.create({
+    name,
+    email,
+    username,
+    password: hashPassword,
+    // role: "customer", // default role
+    // phoneNumber,
+  });
+  
 
-//   const updatedCustomer = await Customer.findByIdAndUpdate(
-//     req.customer.id,
-//     { name, phoneNumber },
-//     { new: true }
-//   );
-
-//   // update the fields
-//   res.status(200).json({
-//     id: updatedCustomer._id,
-//     name: updatedCustomer.name, // if we want to show name:name, can just write name
-//     email: updatedCustomer.email,
-//     phoneNumber: updatedCustomer.phoneNumber,
-//   });
-//   // res.json({message: 'User Data' })
-// });
+  if (customer) {
+    res.status(201).json({
+      // everything is OK and we send the following values back
+      _id: customer.id,
+      name: customer.name,
+      email: customer.email,
+      token: generateToken(customer._id),
+      username: customer.username,
+      // role: customer.role,
+      // phoneNumber: customer.phoneNumber,
+    });
+  } else {
+    res.status(400);
+    throw new Error("Invalid data");
+  }
+  // res.json({message: 'Register User' })
+});
 
 // To generate a JWT token
 const generateToken = (id) => {
@@ -167,6 +167,9 @@ module.exports = {
   registerCustomer,
   loginCustomer,
   getMe,
+  registerOrganization,
   // updateMe,
   // pendingCall,
 };
+
+
