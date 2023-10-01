@@ -6,7 +6,7 @@ body {
 }
 
 .main-header {
-    background-color: #4b5320;
+    background-color: #00274d;
     color: #ffffff;
     display: flex;
     justify-content: space-between;
@@ -19,7 +19,7 @@ body {
 }
 
 .nav-buttons button {
-    background-color: #556b2f;
+    background-color: #bf0a30;
     border: none;
     color: #ffffff;
     padding: 10px 20px;
@@ -29,7 +29,7 @@ body {
 }
 
 .nav-buttons button:hover {
-    background-color: #6b8e23;
+    background-color: #ff191f;
 }
 
 .main-content {
@@ -45,7 +45,7 @@ body {
 }
 
 .main-footer {
-    background-color: #4b5320;
+    background-color: #00274d;
     color: #ffffff;
     text-align: center;
     padding: 10px 20px;
@@ -55,5 +55,9 @@ body {
 }
 
 #logo-pic {
-    width: 15px;
+    height: 15px;
+}
+
+strong {
+    color: #5271FF;
 }
