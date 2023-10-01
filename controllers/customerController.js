@@ -66,14 +66,13 @@ const registerOrganization = asyncHandler(async (req, res) => {
   // console.log('registerOrganization route hit');
 
   const { name, description, tag, contact } = req.body; // getting all the fields
-  
-
-  if (!name || !description || !tag || !contact) {
+  console.log(req.body);
+  if (!name || !description || !tag || !Array.isArray(tag) || tag.length === 0 || !contact) {
     res.status(400);
     throw new Error("Please add all the fields");
-  }
+}
   
-  // Check if organizatoin exists
+  // Check if organization exists
   const organizationExists = await Organization.findOne({ name }); // name is unique and could be used to check if user exists
   if (organizationExists) {
     res.status(400);
@@ -87,6 +86,8 @@ const registerOrganization = asyncHandler(async (req, res) => {
     contact,
   });
 
+
+  console.log(organization);
   if (organization) {
     res.status(201).json({
       // everything is OK and we send the following values back
@@ -152,19 +153,34 @@ const getMe = asyncHandler(async (req, res) => {
 
 
 
+
+//  @desc Get user tag
+//  @route Get /api/checkMatching
+//  @access Public
 const getMatchedCompanies = asyncHandler(async (req, res) => {
+  let { tag } = req.query;  // Getting tag from query parameters
 
-  // here we get data and then send back data
+  // If tag is not an array, convert it
+  if (tag && !Array.isArray(tag)) {
+      tag = Array.isArray(tag) ? tag : [tag];
+  }
 
-  // const { name,etc } = req.body;  // info from frontend
-  // const {} = await documentName.findbyId()  // use a query to fetch all companies having a tag called whatever used fetched 
+  if (!tag || tag.length === 0) {
+      res.status(400);
+      throw new Error("Tags must be an array and not empty");
+  }
 
-  // Now based on that we perform a query 
+  console.log('Received tags:', tag);
 
-  // Create a dict that has company info and send it to frontend. 
+  const matchedCompanies = await Organization.find({ tag: { $in: tag } });
 
-
-})
+  if (matchedCompanies.length === 0) {
+      res.status(404); // Not found
+      throw new Error("No companies found with the given tags");
+  } else {
+      res.status(200).json(matchedCompanies); // Send matched companies as response
+  }
+});
 
 
 

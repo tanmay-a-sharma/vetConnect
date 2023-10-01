@@ -4,7 +4,8 @@ const mongoose = require('mongoose')
 const organizationSchema = mongoose.Schema({
     name: {
         type: String, 
-        required: [true, 'Please add a name']
+        required: [true, 'Please add a name'],
+        unique: true
     },
     description: {
         type: String, 
@@ -12,13 +13,13 @@ const organizationSchema = mongoose.Schema({
         unique: false
     },
     tag: {
-        type: String, 
-        required: [true, 'Please add an tag'],
-        unique: false
+        type: [String],  // Changed this to an array of strings
+        required: [true, 'Please add a tag'],
     },
     contact: {
         type: String, 
-        required: [true, 'Please add contact information']
+        required: [true, 'Please add contact information'],
+        unique: false
     },
     // role: {
     //     type: String, 

@@ -29,7 +29,7 @@ router.get('/', (req, res) => {
 //     });
 // });
 
-router.post('/dropdown', getMatchedCompanies) // returns the matching companies
+router.post('/checkMatching', getMatchedCompanies) // returns the matching companies
 
 
 
