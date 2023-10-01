@@ -1,4 +1,9 @@
 # VetConnect
+A platform to connect veterans with the resources and community that they deserve
+
+
+
+
 Robinhood Social Good Hackathon
 
 
