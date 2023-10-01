@@ -155,3 +155,16 @@ body {
     margin: auto;
     text-align: center;
 }
+
+#smallimg {
+    width: 30%;
+}
+
+#slickbutton {
+    background-color: #00274d;
+    border: 0px solid black;
+}
+
+#slickbutton:hover {
+    cursor: pointer;
+}
