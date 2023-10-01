@@ -38,7 +38,7 @@ router.get('/home', (req, res) => {
     res.sendFile('landing.html', { root: path.join(__dirname, '../../views') })
 });
 
-router.get('/login', (req, res) => {
+router.get('/loginpage', (req, res) => {
     res.sendFile('login.html', { root: path.join(__dirname, '../../views') })
 });
 
