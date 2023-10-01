@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 const Customer = require("../models/customerModel");
+const Organization = require("../models/organizationModel")
 
 
 //  @desc Register new users
@@ -37,6 +38,10 @@ const registerCustomer = asyncHandler(async (req, res) => {
     // role: "customer", // default role
     // phoneNumber,
   });
+
+
+
+  
 
   if (customer) {
     res.status(201).json({
@@ -104,18 +109,46 @@ const getMe = asyncHandler(async (req, res) => {
 const getMatchedCompanies = asyncHandler(async (req, res) => {
 
   // here we get data and then send back data
+const registerOrganization = asyncHandler(async (req, res) => {
+  const { name, username, phoneNumber, email, password } = req.body; // getting all the fields
 
   // const { name,etc } = req.body;  // info from frontend
   // const {} = await documentName.findbyId()  // use a query to fetch all companies having a tag called whatever used fetched 
+  // Can make this more specific for each missing field
+  if (!name || !email || !password || !username) {
+    res.status(400);
+    throw new Error("Please add all the fields");
+  }
 
-  // Now based on that we perform a query 
+  // Check if user exists
+  const customerExists = await Customer.findOne({ email }); // email is unique and could be used to check if user exists \\ username is also unique \\  could also use phone number
+  if (customerExists) {
+    res.status(400);
+    throw new Error("Customer already exists");
+  }
 
-  // Create a dict that has company info and send it to frontend. 
+  // Hashing the password
 
+  const salt = await bcrypt.genSalt(10); // to hash the pass
+  const hashPassword = await bcrypt.hash(password, salt);
 
-})
+//   // const {_id, , email} = await Customer.findById(req.customer.id) // We can all fetch others fields
 
+//   const updatedCustomer = await Customer.findByIdAndUpdate(
+//     req.customer.id,
+//     { name, phoneNumber },
+//     { new: true }
+//   );
 
+//   // update the fields
+//   res.status(200).json({
+//     id: updatedCustomer._id,
+//     name: updatedCustomer.name, // if we want to show name:name, can just write name
+//     email: updatedCustomer.email,
+//     phoneNumber: updatedCustomer.phoneNumber,
+//   });
+//   // res.json({message: 'User Data' })
+// });
 
 // To generate a JWT token
 const generateToken = (id) => {
@@ -129,7 +162,9 @@ module.exports = {
   registerCustomer,
   loginCustomer,
   getMe,
-  getMatchedCompanies,
+
   // updateMe,
   // pendingCall,
 };
+
+

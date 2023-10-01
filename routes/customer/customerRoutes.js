@@ -6,7 +6,7 @@ const path = require('path');
 // router.use(bodyParser.json()); 
 
 const router = express.Router()
-const { registerCustomer, loginCustomer, getMe, getMatchedCompanies} = require('../../controllers/customerController')
+const { registerCustomer, loginCustomer, getMe, registerOrganization, getMatchedCompanies} = require('../../controllers/customerController')
 const { protectCustomer } = require('../../middleware/customerAuthMiddleware')
 
 
@@ -37,6 +37,9 @@ router.post('/dropdown', getMatchedCompanies) // returns the matching companies
 router.get('/home', (req, res) => {
     res.sendFile('landing.html', { root: path.join(__dirname, '../../views') })
 });
+
+
+router.post('/registerOrganization', registerOrganization) 
 
 router.post('/', registerCustomer) // Adding a customer ==> registration
 router.post('/login', loginCustomer) // authenticate a customer ==> login
