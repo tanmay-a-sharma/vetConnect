@@ -1,8 +1,12 @@
 const express = require('express')
 const path = require('path');
 
+const bodyParser = require('body-parser');
+
+router.use(bodyParser.json()); 
+
 const router = express.Router()
-const { registerCustomer, loginCustomer, getMe } = require('../../controllers/customerController')
+const { registerCustomer, loginCustomer, getMe, getMatchedCompanies} = require('../../controllers/customerController')
 const { protectCustomer } = require('../../middleware/customerAuthMiddleware')
 
 
@@ -11,6 +15,21 @@ router.get('/', (req, res) => {
     res.sendFile('header.html', { root: path.join(__dirname, '../../views') });
 
 });
+
+
+// get data from user when they select an option from drop down 
+// router.post('/dropdown', (req, res) => {
+//     console.log(req.body.myData); // This will log "exampleData" or whatever you sent from the frontend
+
+    
+
+//     // Sending back a response to the frontend
+//     res.json({
+//         message: 'Data received and processed!'
+//     });
+// });
+
+router.post('/dropdown', findMatchedCompanies) // returns the matching companies
 
 router.get('/home', (req, res) => {
     res.sendFile('landing.html', { root: path.join(__dirname, '../../views') })

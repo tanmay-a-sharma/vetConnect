@@ -100,6 +100,23 @@ const getMe = asyncHandler(async (req, res) => {
   // res.json({message: 'User Data' })
 });
 
+
+const getMatchedCompanies = asyncHandler(async (req, res) => {
+
+  // here we get data and then send back data
+
+  // const { name,etc } = req.body;  // info from frontend
+  // const {} = await documentName.findbyId()  // use a query to fetch all companies having a tag called whatever used fetched 
+
+  // Now based on that we perform a query 
+
+  // Create a dict that has company info and send it to frontend. 
+  
+
+
+
+})
+
 // const pendingCall = asyncHandler(async (req, res) => {
 //   // Since we are getting the req.user,  userid from our authMiddleware,we can use it here since it's redirecting us here.
 //   const { _id, name, email } = await Customer.findById(req.customer.id); // We can all fetch others fields
@@ -167,6 +184,7 @@ module.exports = {
   registerCustomer,
   loginCustomer,
   getMe,
+  getMatchedCompanies,
   // updateMe,
   // pendingCall,
 };
