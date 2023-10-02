@@ -97,6 +97,7 @@ body {
     box-sizing: border-box;
     padding: 10px;
     border: 1px solid #ccc;
+    height: 100%;
 }
 
 .left-column {
@@ -105,11 +106,9 @@ body {
 }
 
 .middle-column {
-    background-color: red;
     flex: 1;
     width: 75%;
     overflow-y: auto;
-    /* Enable vertical scroll for content */
 }
 
 .right-column {
@@ -123,4 +122,74 @@ body {
     width: 100%;
     box-sizing: border-box;
     height: 100%;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    overflow-y: auto;
+    height: 400px;
+}
+
+.company-box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.company-box:hover {
+    cursor: pointer;
+}
+
+.company-image {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+}
+
+.company-details {
+    flex: 1;
+}
+
+.company-tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.company-tags span {
+    margin-right: 10px;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 400px;
+    text-align: center;
+}
+
+.experience-box {
+    display: inline-block;
+    width: 250px;
+    height: 150px;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+    margin: 10px;
+    padding: 10px;
+    text-align: left;
+}
+
+.experience-box:hover {
+    cursor: pointer;
 }
